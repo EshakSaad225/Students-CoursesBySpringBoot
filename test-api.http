@@ -1,0 +1,38 @@
+### Get all Courses
+GET http://localhost:8080/Course
+
+
+### Create new Course
+POST http://localhost:8080/Course
+Content-Type: application/json
+
+{
+  "name": "Course 2",
+  "totalHours": 73,
+  "student": []
+}
+
+
+#############################################
+
+
+### Get all Students
+GET http://localhost:8080/Student
+
+### Create new Student
+POST http://localhost:8080/Student
+Content-Type: application/json
+
+{
+  "firstName": "student",
+  "lastName": "3",
+  "phoneNumber": "122423454",
+  "course" : [] 
+}
+
+##################################
+
+### Enroll student in course
+
+#  "/{studentId}/enroll/{courseId}"
+POST http://localhost:8080/students/e4ae3dd1-6701-4fb7-8dd9-5b3692d36368/enroll/b8a02c32-7065-4237-a7a4-e2213c7e22ed

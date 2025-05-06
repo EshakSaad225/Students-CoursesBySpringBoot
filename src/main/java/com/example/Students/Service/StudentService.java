@@ -12,7 +12,6 @@ import com.example.Students.Entitys.Course;
 import com.example.Students.Entitys.Student;
 import com.example.Students.Repository.CourseRepository;
 import com.example.Students.Repository.StudentRepository;
-
 import jakarta.transaction.Transactional;
 
 
@@ -73,41 +72,37 @@ public class StudentService {
         studentRepository.save(student);
     }
 
-    public void enrollStudentInCourse(UUID studentId, UUID courseId) {
+    public void enrollStudentInCourse(UUID studentId, UUID courseId , String role) {
         Student student = studentRepository.findById(studentId)
             .orElseThrow(() -> new IllegalStateException("Student not found"));
 
         Course course = courseRepository.findById(courseId)
             .orElseThrow(() -> new IllegalStateException("Course not found"));
 
-        if (student.getCourse().contains(course)) {
-            throw new IllegalStateException("Student is Enrolled in this course");
-        }
-
-        course.getStudent().add(student);
-        student.getCourse().add(course);
-
-        studentRepository.save(student);
-        courseRepository.save(course);
-    }
-
-    public void unenrollStudentInCourse(UUID studentId, UUID courseId) {
-        Student student = studentRepository.findById(studentId)
-            .orElseThrow(() -> new IllegalStateException("Student not found"));
+        if(role.equals("Enrol") ){
+            if (student.getCourse().contains(course)) {
+                throw new IllegalStateException("Student is Enrolled in this course");
+            }
     
-        Course course = courseRepository.findById(courseId)
-            .orElseThrow(() -> new IllegalStateException("Course not found"));
+            course.getStudent().add(student);
+            student.getCourse().add(course);
+    
+            studentRepository.save(student);
+            courseRepository.save(course);
+        }
+        else{
+            System.out.println("hi");
+            if (!student.getCourse().contains(course)) {
+                throw new IllegalStateException("Student is Unenrolled in this course");
+            }
         
-        if (!student.getCourse().contains(course)) {
-            throw new IllegalStateException("Student is Unenrolled in this course");
-        }
+            course.getStudent().remove(student);
+            student.getCourse().remove(course);
     
-        course.getStudent().remove(student);
-        student.getCourse().remove(course);
-
-        studentRepository.save(student);
-        courseRepository.save(course);
+            studentRepository.save(student);
+            courseRepository.save(course);
         }
+    }
 
     public void deleteStudent(UUID studentId){
         boolean exists = studentRepository.existsById(studentId) ;

@@ -14,9 +14,12 @@ import com.example.Students.DTO.StudentDTO;
 import com.example.Students.DTO.StudentDTOWithoutCourse;
 import com.example.Students.Service.StudentService;
 
+
 @RequestMapping(path =  "/Student")
 @RestController
 public class StudentController {
+
+    public record EnrollRequest(UUID studentId, UUID courseId , String role) {}
 
     @Autowired
     private StudentService studentService ;
@@ -31,18 +34,9 @@ public class StudentController {
         studentService.AddNewStudent(newStudent);
     }
 
-    @PostMapping("/{studentId}/enroll/{courseId}")
-    public void enrollStudentInCourse(
-            @PathVariable UUID studentId,
-            @PathVariable UUID courseId) {
-        studentService.enrollStudentInCourse(studentId, courseId);
-    }
-
-    @PostMapping("/{studentId}/unenroll/{courseId}")
-    public void unenrollStudentInCourse(
-            @PathVariable UUID studentId,
-            @PathVariable UUID courseId) {
-        studentService.unenrollStudentInCourse(studentId, courseId);
+    @PostMapping("/enroll")
+    public void enrollStudentInCourse(@RequestBody EnrollRequest enrollRequest) {
+        studentService.enrollStudentInCourse(enrollRequest.studentId, enrollRequest.courseId,enrollRequest.role);
     }
 
     @DeleteMapping(path = "{studenId}")

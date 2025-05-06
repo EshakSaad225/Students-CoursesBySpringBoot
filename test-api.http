@@ -64,10 +64,6 @@ Content-Type: application/json
 #  "/{studentId}/enroll/{courseId}"
 
 ### Enroll
-
-POST http://localhost:8080/Student/b66a0faf-3b4a-4422-b9d6-bf628337295a/enroll/a827c784-84ff-4ff8-b407-d1a2d39b7323
-###
-
 POST http://localhost:8080/Student/enroll
 Content-Type: application/json
 
@@ -76,7 +72,3 @@ Content-Type: application/json
   "courseId": "9b60fc69-95e7-4060-aec7-b9ba566e9766",
   "role" : "Enrol"
 }
-
-### Unenroll 
-
-POST http://localhost:8080/Student/f551423a-def5-42b6-b12c-363c4f55f37b/unenroll/8b961aa5-4ed3-446e-bc93-8a1a31eeab28

@@ -61,9 +61,8 @@ Content-Type: application/json
 
 ### Enroll & Unenroll student in course
 
-#  "/{studentId}/enroll/{courseId}"
 
-### Enroll
+### Unenroll
 POST http://localhost:8080/Student/enroll
 Content-Type: application/json
 

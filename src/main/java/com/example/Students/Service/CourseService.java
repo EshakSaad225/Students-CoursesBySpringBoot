@@ -1,5 +1,6 @@
 package com.example.Students.Service;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -9,6 +10,7 @@ import com.example.Students.DTO.CourseDTOWithoutStudent;
 import com.example.Students.DTO.StudentDTOWithoutCourse;
 import com.example.Students.Entitys.Course;
 import com.example.Students.Repository.CourseRepository;
+import jakarta.transaction.Transactional;
 
 
 @Service
@@ -57,7 +59,33 @@ public class CourseService {
         .toList();
     }
 
-    public void AddNewCourse(Course course){
+    public void AddNewCourse(CourseDTOWithoutStudent newCourse){
+        Course course = new Course() ;
+        course.setName(newCourse.getName());
+        course.setTotalHours(newCourse.getTotalHours());
         courseRepository.save(course);
+    }
+
+    public void deleteCourse(UUID courseId){
+        boolean exists = courseRepository.existsById(courseId) ;
+        if(!exists){
+            throw new IllegalStateException(courseId + " does not exists") ;
+        }
+        courseRepository.deleteById(courseId);
+    }
+
+    @Transactional
+    public void updateCourse(CourseDTOWithoutStudent updatedCourse){
+
+
+        Course course = courseRepository.findById(updatedCourse.getId()).orElseThrow(
+            () -> new IllegalStateException( updatedCourse.getId() + " does not exists")
+        );  
+        if(!updatedCourse.getName().isEmpty()){
+            course.setName(updatedCourse.getName());
+        } 
+        if(updatedCourse.getTotalHours() != null ){
+            course.setTotalHours(updatedCourse.getTotalHours());
+        } 
     }
 }

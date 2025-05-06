@@ -1,6 +1,8 @@
 package com.example.Students.Entitys;
 import java.util.List;
 import java.util.UUID;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -23,7 +25,10 @@ public class Student {
     private String lastName ;
     private String phoneNumber ;
 
-    @ManyToMany(mappedBy = "student")
+    @ManyToMany(
+        mappedBy = "student",
+        cascade = CascadeType.ALL
+        )
     private List<Course> course ;
     
 }

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class CourseDTO {
     private UUID id ;
     private String name ;
-    private int totalHours ;
+    private Integer totalHours ;
     private List<StudentDTOWithoutCourse> student ;
 }

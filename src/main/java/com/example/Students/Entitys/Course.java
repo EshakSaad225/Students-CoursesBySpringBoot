@@ -1,6 +1,8 @@
 package com.example.Students.Entitys;
 import java.util.List;
 import java.util.UUID;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,7 +26,9 @@ public class Course {
     private String name ;
     private int totalHours ;
 
-    @ManyToMany
+    @ManyToMany(
+        cascade = CascadeType.ALL
+    )
     @JoinTable(
         name = "Course_Student",
         joinColumns = @JoinColumn(name = "course_id"),

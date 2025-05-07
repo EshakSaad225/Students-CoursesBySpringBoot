@@ -13,7 +13,7 @@ First name
 
 Last name
 
-Email
+Phone number
 
 Each student can enroll in multiple courses.
 

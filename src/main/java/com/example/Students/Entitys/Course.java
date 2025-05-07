@@ -27,7 +27,7 @@ public class Course {
     private int totalHours ;
 
     @ManyToMany(
-        cascade = CascadeType.ALL
+        cascade = {CascadeType.PERSIST, CascadeType.MERGE}
     )
     @JoinTable(
         name = "Course_Student",

@@ -7,12 +7,12 @@ POST http://localhost:8080/Course
 Content-Type: application/json
 
 {
-  "name": "Course 1",
-  "totalHours": 25
+  "name": "Course 3",
+  "totalHours": 12
 }
 
 ### Delete Course by id
-DELETE http://localhost:8080/Course/8b961aa5-4ed3-446e-bc93-8a1a31eeab28
+DELETE http://localhost:8080/Course/725a01ad-d980-4a5c-85e9-814365a0d89b
 
 ### Update Course Data
 
@@ -20,7 +20,7 @@ Put http://localhost:8080/Course
 Content-Type: application/json
 
 {
-  "id": "9b60fc69-95e7-4060-aec7-b9ba566e9766" ,
+  "id": "725a01ad-d980-4a5c-85e9-814365a0d89b" ,
   "name": "Course 2",
   "totalHours": 35
 }
@@ -37,9 +37,9 @@ POST http://localhost:8080/Student
 Content-Type: application/json
 
 {
-  "firstName": "student",
-  "lastName": "4",
-  "phoneNumber": "122423454"
+  "firstName": "Student",
+  "lastName": "3",
+  "phoneNumber": "875425833"
 }
 
 ### Delete Student by id
@@ -52,8 +52,8 @@ Content-Type: application/json
 
 {
   "id": "f551423a-def5-42b6-b12c-363c4f55f37b",
-  "firstName": "student",
-  "lastName": "5",
+  "firstName": "Student",
+  "lastName": "1",
   "phoneNumber": "90371223454"
 }
 
@@ -61,13 +61,13 @@ Content-Type: application/json
 
 ### Enroll & Unenroll student in course
 
-
+### Enrol
 ### Unenroll
 POST http://localhost:8080/Student/enroll
 Content-Type: application/json
 
 {
-  "studentId": "f551423a-def5-42b6-b12c-363c4f55f37b",
-  "courseId": "9b60fc69-95e7-4060-aec7-b9ba566e9766",
+  "studentId": "1c7cf6ed-9810-4712-8abd-93d9260f3cf9",
+  "courseId": "081968ce-dd56-41ff-800e-6844078a65ba",
   "role" : "Enrol"
 }
